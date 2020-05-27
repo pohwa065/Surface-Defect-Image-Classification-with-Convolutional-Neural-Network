@@ -16,13 +16,13 @@ import cv2
 
 #Load data
 
-X_train = np.load('X_train_ex1.npy')
-Y_train = np.load('Y_train_ex1.npy')
-X_test = np.load('X_test_ex1.npy')
-Y_test = np.load('Y_test_ex1.npy')
+X_train = np.load('X_train.npy')
+Y_train = np.load('Y_train.npy')
+X_test = np.load('X_test.npy')
+Y_test = np.load('Y_test.npy')
 
-y_test_orig = np.load('y_test_orig_ex1.npy')
-y_train_orig = np.load('y_train_orig_ex1.npy')
+y_test_orig = np.load('y_test_orig.npy')
+y_train_orig = np.load('y_train_orig.npy')
 
 print('X_train shape:' +str(X_train.shape))
 print('Y_train shape:' +str(Y_train.shape))
@@ -30,7 +30,6 @@ print('X_test shape:' + str(X_test.shape))
 print('Y_test shape:' +str(Y_test.shape))
 print('y_train_orig shape:' + str(y_train_orig.shape))
 print('y_test_orig shape:' + str(y_test_orig.shape))
-
 
 
 
@@ -76,7 +75,7 @@ def forward_propagation(X, parameters):
     ### END CODE HERE ###
 
     return Z3
-
+#Cost function and L2 regularization
 def compute_cost(Z3, Y, parameters):
     #cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=Z3, labels=Y))
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=Z3, labels=Y)) + 0.001 * tf.nn.l2_loss(parameters['W1']) + 0.005 * tf.nn.l2_loss(parameters['W2'])
@@ -222,31 +221,31 @@ _, _, parameters, prediction = model(X_train, Y_train, X_test, Y_test)
 correct = [i for i,item in enumerate(prediction) if item == y_test_orig[i]]
 wrong = [i for i,item in enumerate(prediction) if item != y_test_orig[i]]
 
-print(prediction)
-print(y_test_orig)
-print(correct)
-print(wrong)
+#print(prediction)
+#print(y_test_orig)
+#print(correct)
+#print(wrong)
 
 
-
+# Training accuracy of each class
 accuracy={}
 for i in range(7):
     all = np.sum(y_train_orig == i)
     correct = np.array([prediction == y_train_orig]) & np.array([prediction == i])
     correct_count = np.sum(correct)
     accuracy[i] = correct_count/all
-    print(all)
-    print(correct_count)
+    #print(all)
+    #print(correct_count)
 
-
+# Test accuracy of each class
 accuracy={}
 for i in range(7):
     all = np.sum(y_test_orig == i)
     correct = np.array([prediction == y_test_orig]) & np.array([prediction == i])
     correct_count = np.sum(correct)
     accuracy[i] = correct_count/all
-    print(all)
-    print(correct_count)
+    #print(all)
+    #print(correct_count)
 
 print('C0 accuracy = '+ str(accuracy[0]))
 print('C1 accuracy = '+ str(accuracy[1]))
@@ -260,12 +259,10 @@ print('C6 accuracy = '+ str(accuracy[6]))
 #plt.imshow(X_test[img][:,:,0])
 #plt.show()
 
+#Display wrongly classify images and their predicted/original label 
 for i in range(len(wrong)):
     print(Y_test[wrong[i]], 'ground truth:' +str(y_test_orig[wrong[i]]), 'predict:' +str(prediction[wrong[i]]))
     plt.imshow(X_test[wrong[i]][:,:,0])
     plt.colorbar()
     plt.show()
 
-
-
-#print(Y_test[img],y_test_orig[img], prediction[img])
