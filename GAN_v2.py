@@ -114,7 +114,7 @@ class ACGAN():
 
         model.add(Flatten())
         model.summary()
-        #plot_model(model, to_file='C:\Po-Hsiang\cs230\Test.png')
+        #plot_model(model, to_file='model_2.png')
 
         img = Input(shape=self.img_shape)
 
@@ -168,7 +168,7 @@ class ACGAN():
 
             # The labels that the generator tries to create an
             # image representation of
-            # here only one class : label = 0
+            # here only creates one class : label = 0
             sampled_labels = np.zeros((batch_size, 1))
             #print(sampled_labels)
 
@@ -233,15 +233,15 @@ class ACGAN():
         #        axs[i,j].axis('off')
         #        cnt += 1
         plt.imshow(gen_imgs[cnt,:,:,0], cmap='gray')
-        plt.savefig("C:\Po-Hsiang\cs230\GAN\%d.png" % epoch)
-        #fig.savefig("C:\Po-Hsiang\cs230\GAN\%d.png" % epoch)
+        plt.savefig("C:\" % epoch)
+        #fig.savefig("C:\" % epoch)
         plt.close()
 
     def save_model(self,epoch):
 
         def save(model, model_name, epoch):
-            model_path = "C:\Po-Hsiang\cs230\GAN\%s%s.json" % (model_name,epoch)
-            weights_path = "C:\Po-Hsiang\cs230\GAN\%s%s_weight.hdf5" % (model_name,epoch)
+            model_path = "C:\%s%s.json" % (model_name,epoch)
+            weights_path = "C:\%s%s_weight.hdf5" % (model_name,epoch)
             options = {"file_arch": model_path,
                         "file_weight": weights_path}
             json_string = model.to_json()
