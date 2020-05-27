@@ -49,7 +49,7 @@ def read_and_label (Source,label):
         image_resize = resize(image, (128, 128))
         X_train_orig_dict[dir]= image_resize
 
-    plt.imshow(X_train_orig_dict[file_name[1]])
+    #plt.imshow(X_train_orig_dict[file_name[1]])
     #plt.show()
 
 
@@ -63,8 +63,8 @@ def read_and_label (Source,label):
         matlab_fig = loadmat(dir)
         image = matlab_fig['hgS_070000'][0][0][3][0][0][3][0][0][2][0][0][0]
         image_resize = resize(image, (128, 128))
-        image_resize2 = image_resize / np.max(image_resize)  # image to 0-1
-        img2 = cv2.merge((image_resize2, image_resize, image_resize))  # resize very image to same dimension
+        image_resize2 = image_resize / np.max(image_resize)  # normalize intensity to image to 0-1
+        img2 = cv2.merge((image_resize2, image_resize, image_resize))  # copy data in one channel to three channels 
         myfourdarray.append(img2)
 
     X_ = np.stack(myfourdarray, axis=0)
@@ -90,8 +90,8 @@ def read_and_label (Source,label):
 
 
 X_0, y_0 = read_and_label('C:\Po-Hsiang\cs230\MS2_Test_Train\_labeled data\C0',0)
-X_0 = X_0[:,:,:,0].reshape(X_0.shape[0],X_0.shape[1],X_0.shape[2],1)
-print(X_0.shape,y_0.shape)
+X_0 = X_0[:,:,:,0].reshape(X_0.shape[0],X_0.shape[1],X_0.shape[2],1)           # take only 1 channel 
+print(X_0.shape,y_0.shape)                                                     # (m, 128,128,1) (m,)
 X_1, y_1 = read_and_label('C:\Po-Hsiang\cs230\MS2_Test_Train\_labeled data\C1',1)
 X_1 = X_1[:,:,:,0].reshape(X_1.shape[0],X_1.shape[1],X_1.shape[2],1)
 print(X_1.shape,y_1.shape)
@@ -118,10 +118,10 @@ args = (X_0,X_1,X_2,X_3,X_4,X_5,X_6)
 arg2 = (y_0,y_1,y_2,y_3,y_4,y_5,y_6)
 t = np.concatenate(args,axis=0)
 t2 = np.concatenate(arg2,axis=0)
+
 # Train_test split
 print(t.shape)
 print(t2.shape)
-
 
 X_train, X_test, y_train, y_test = train_test_split(t,t2, test_size=0.99, random_state=42)
 
@@ -145,7 +145,7 @@ print('Y_test shape:' +str(Y_test.shape))
 print('y_train_orig shape:' + str(y_train.shape))
 print('y_test_orig shape:' + str(y_test.shape))
 
-
+#display some example images 
 
 list = [1,4,5,7,4,564,432,526,2,14,567]
 
