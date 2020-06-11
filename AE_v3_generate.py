@@ -25,20 +25,11 @@ import random
 
 #Load data
 
-X_train = np.load('X_train_6.npy')
-X_train_lowSNR= np.load('X_train_6_lowSNR.npy')
-#Y_train = np.load('Y_train_ex6.npy')
+
 X_test = np.load('X_C6_e11.npy')
-#Y_test = np.load('Y_test_ex1.npy')
-
 y_test_orig = np.load('Y_C6_e11.npy')
-y_train_orig = np.load('y_train_orig_6.npy')
 
-print('X_train shape:' +str(X_train.shape))
-#print('Y_train shape:' +str(Y_train.shape))
 print('X_test shape:' + str(X_test.shape))
-# #print('Y_test shape:' +str(Y_test.shape))
-print('y_train_orig shape:' + str(y_train_orig.shape))
 print('y_test_orig shape:' + str(y_test_orig.shape))
 
 # Model configuration
@@ -53,8 +44,6 @@ noise_factor = 0.55
 number_of_visualizations = len(X_test)
 
 # Load MNIST dataset
-input_train = X_train
-target_train =y_train_orig
 input_test =X_test
 target_test = y_test_orig
 
@@ -66,24 +55,10 @@ target_test = y_test_orig
 input_train = input_train.astype('float32')
 input_test = input_test.astype('float32')
 
-# Add noise
-pure = input_train
 pure_test = input_test
-noise = np.random.normal(0, 0.5, pure.shape)
-noise_test = np.random.normal(0, 0.5,pure_test.shape)
 #noisy_input = X_train_lowSNR+ noise_factor * noise
 #noisy_input = pure + noise_factor * noise
 noisy_input_test = pure_test + 0* noise_test
-
-idx =2
-imgs = [pure_test,noisy_input_test]
-
-for img in imgs:
-  show = img[idx,:,:,0]
-  plt.imshow(show)
-  plt.colorbar()
-  #plt.show()
-
 
 model = tf.keras.models.load_model("AF__6")
 model.summary()
@@ -96,97 +71,11 @@ denoised_images = model.predict(samples)
 
 
 #Extract feature
-
 extractor = tf.keras.Model(inputs=model.inputs,
                         outputs=[layer.output for layer in model.layers])
 
-
 features = extractor(pure_test)
 
-
-
-#layer0
-#shape = (m, 128,128,1)
-c = 0   #channel
-fig = plt.figure()
-for i in range(1,5):
-  img = pure_test[i,:,:,c]
-  fig.add_subplot(2,2, i)
-  plt.imshow(img)
-
-plt.title('Layer0')
-#plt.show()
-
-
-
-#layer1
-#features[0]    #shape = (m, 128,128,64)
-#c = 1   #channel
-#fig = plt.figure()
-#for i in range(1,5):
-#  L1 = tf.keras.backend.eval(features[0])
-#  img = L1[i,:,:,c]
-#  fig.add_subplot(2,2, i)
-#  plt.imshow(img)
-
-#plt.title('Layer1')
-#plt.show()
-
-
-#layer2
-#features[1]    #shape = (m, 128,128,32)
-#c = 1   #channel
-#fig = plt.figure()
-#for i in range(1,5):
-#  L2 = tf.keras.backend.eval(features[1])
-#  img = L2[i,:,:,c]
-#  fig.add_subplot(2,2, i)
-#  plt.imshow(img)
-
-#plt.title('Layer2')
-#plt.show()
-
-
-#layer3
-#features[2]    #shape = (m, 128,128,32)
-#c = 1   #channel
-#fig = plt.figure()
-#for i in range(1,5):
-#  L3 = tf.keras.backend.eval(features[2])
-#  img = L3[i,:,:,c]
-#  fig.add_subplot(2,2, i)
-#  plt.imshow(img)
-
-#plt.title('Layer3')
-#plt.show()
-
-
-#layer4
-#features[3]    #shape = (m, 128,128,64)
-#c = 1   #channel
-#fig = plt.figure()
-#for i in range(1,5):
-#  L4 = tf.keras.backend.eval(features[3])
-#  img = L4[i,:,:,c]
-#  fig.add_subplot(2,2, i)
-#  plt.imshow(img)
-
-#plt.title('Layer4')
-#plt.show()
-
-
-#layer5 (output)
-#features[4]    #shape = (m, 128,128,1)
-#c = 0   #channel
-#fig = plt.figure()
-#for i in range(1,5):
-#  L5 = tf.keras.backend.eval(features[4])
-#  img = L5[i,:,:,0]
-#  fig.add_subplot(2,2, i)
-#  plt.imshow(img)
-
-#plt.title('Layer5')
-#plt.show()
 
 myfourdarray = []
 
@@ -213,8 +102,6 @@ for k in range(0, number_of_visualizations):
   denoised_image = denoised_image/np.max(denoised_image)
 
   myfourdarray.append(denoised_image)
-  print(k)
-
 
   # Matplotlib preparations
   #fig, axes = plt.subplots(1, 3)
