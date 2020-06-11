@@ -163,7 +163,3 @@ for i in range(len(wrong)):
     plt.imshow(X_test[wrong[i]][:,:,0])
     plt.colorbar()
     plt.show()
-
-
-
-#print(Y_test[img],y_test_orig[img], prediction[img])
