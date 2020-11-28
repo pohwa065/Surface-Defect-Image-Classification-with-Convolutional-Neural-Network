@@ -30,8 +30,8 @@ Original and AE denoised images. The intensity of the feature are boosted to dif
 
 
 ### CNN Classifier performance with data augmentation and denoised images
-Table1: Sample distribution in training and testing set
-![Picture8](https://user-images.githubusercontent.com/65942005/100525874-a93b3b80-3178-11eb-962c-bf7851644fd5.png)
-Table2: Accuracy of each class for each testcase 
-![Picture9](https://user-images.githubusercontent.com/65942005/100525876-aa6c6880-3178-11eb-8fb3-57c26d47f4b1.png)
+Table1: Sample distribution in training and testing set <br>
+![Picture8](https://user-images.githubusercontent.com/65942005/100525874-a93b3b80-3178-11eb-962c-bf7851644fd5.png)<br>
+Table2: Accuracy of each class for each testcase <br>
+![Picture9](https://user-images.githubusercontent.com/65942005/100525876-aa6c6880-3178-11eb-8fb3-57c26d47f4b1.png)<br>
 
