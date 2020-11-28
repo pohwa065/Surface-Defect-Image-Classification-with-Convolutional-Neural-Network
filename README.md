@@ -17,9 +17,9 @@ About 12k of images (resize to 128x128x1) are labeled. Most of them have well-de
 
 ## Result
 ### GAN generated synthetic images 
-![Picture1](https://user-images.githubusercontent.com/65942005/100526144-fa4c2f00-317a-11eb-9d0e-c09fa6c5b962.png)
-(Upper) Original and synthetic images of C6. 28x28, 64x64 generated images are resized to 128x128 
-(Lower) Original and synthetic images of C5. The effect of different kernel size in the convolution layer is shown
+![Picture1](https://user-images.githubusercontent.com/65942005/100526144-fa4c2f00-317a-11eb-9d0e-c09fa6c5b962.png) <br>
+(Upper) Original and synthetic images of C6. 28x28, 64x64 generated images are resized to 128x128 <br>
+(Lower) Original and synthetic images of C5. The effect of different kernel size in the convolution layer is shown <br>
 
 ### AE denoised images 
 ![Picture3](https://user-images.githubusercontent.com/65942005/100525609-fcac8a00-3176-11eb-9668-ac2a60c9c6e9.png) <br>
@@ -27,8 +27,13 @@ Original and AE denoised images. The intensity of the feature are boosted to dif
 
 
 ### CNN Classifier performance with data augmentation and denoised images
+The synthetic images from GAN are similar to the original images, confirmed not only visually but also through a baseline classifier. With the help of these GAN generated images in the training set, the classification accuracy of the class having small labeled data improves by 4.5%. AE successfully removed the background noise in the images from the training set. However, the model failed to recognize key features of the raw images in the test set.  
+
 Table1: Sample distribution in training and testing set <br>
 ![Picture8](https://user-images.githubusercontent.com/65942005/100525874-a93b3b80-3178-11eb-962c-bf7851644fd5.png)<br>
 Table2: Accuracy of each class for each testcase <br>
 ![Picture9](https://user-images.githubusercontent.com/65942005/100525876-aa6c6880-3178-11eb-8fb3-57c26d47f4b1.png)<br>
 
+### Error analysis 
+
+![Picture10](https://user-images.githubusercontent.com/65942005/100526215-a5f57f00-317b-11eb-9bf8-4eede5fd6216.png)
