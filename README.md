@@ -8,21 +8,18 @@ The proposed idea is to use convolutional neural network (CNN) to classify defec
 
 
 ## Model Structure
-![Picture5](https://user-images.githubusercontent.com/65942005/100525877-aa6c6880-3178-11eb-90a8-6b1d598e491c.png)
-![Picture6](https://user-images.githubusercontent.com/65942005/100525878-aa6c6880-3178-11eb-8bc7-2a0aa8ebb5ed.png)
+![Picture2](https://user-images.githubusercontent.com/65942005/100526142-f91b0200-317a-11eb-8e2f-c76940327ca0.png)
 
-a) Generator consists of several convolution layers (CONV) follow by activation, batch normalization (BN) and up-sampling. (b) Discriminator also contains series of CONV layers follow by activation and dropout. At the end, it has a fully-connected layer with sigmoid function for binary classification.  
+a) Generator consists of several convolution layers (CONV) follow by activation, batch normalization (BN) and up-sampling. (b) Discriminator also contains series of CONV layers follow by activation and dropout. At the end, it has a fully-connected layer with sigmoid function for binary classification.  (c) Stacked autoencoder with convolution layers (encoder) and transposed convolution layers (decoder). 
 
 ## Dataset
 About 12k of images (resize to 128x128x1) are labeled. Most of them have well-defined defect shapes. Apart from labeled data, 210 and 3000 synthetic images of C5 and C6 were added to the dataset respectively. Also,  in some of the experiments, C1 and C6 are replaced with denoised version of the images. 
 
 ## Result
 ### GAN generated synthetic images 
-![Picture1](https://user-images.githubusercontent.com/65942005/100525607-f9190300-3176-11eb-9937-6debe36097b2.png)
-Original and synthetic images of C6. 28x28, 64x64 generated images are resized to 128x128 
-
-![Picture2](https://user-images.githubusercontent.com/65942005/100525608-fb7b5d00-3176-11eb-9fe7-e0f9670a2e12.png)
-Original and synthetic images of C5. The effect of different kernel size in the convolution layer is shown
+![Picture1](https://user-images.githubusercontent.com/65942005/100526144-fa4c2f00-317a-11eb-9d0e-c09fa6c5b962.png)
+(Upper) Original and synthetic images of C6. 28x28, 64x64 generated images are resized to 128x128 
+(Lower) Original and synthetic images of C5. The effect of different kernel size in the convolution layer is shown
 
 ### AE denoised images 
 ![Picture3](https://user-images.githubusercontent.com/65942005/100525609-fcac8a00-3176-11eb-9668-ac2a60c9c6e9.png) <br>
