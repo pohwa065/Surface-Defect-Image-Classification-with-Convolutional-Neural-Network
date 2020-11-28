@@ -10,8 +10,8 @@ The proposed idea is to use convolutional neural network (CNN) to classify defec
 ## Model Structure
 ![Picture5](https://user-images.githubusercontent.com/65942005/100525877-aa6c6880-3178-11eb-90a8-6b1d598e491c.png)
 ![Picture6](https://user-images.githubusercontent.com/65942005/100525878-aa6c6880-3178-11eb-8bc7-2a0aa8ebb5ed.png)
-![Picture7](https://user-images.githubusercontent.com/65942005/100525879-ab04ff00-3178-11eb-930a-3db25a450095.png)
-a) Generator consists of several convolution layers (CONV) follow by activation, batch normalization (BN) and up-sampling. (b) Discriminator also contains series of CONV layers follow by activation and dropout. At the end, it has a fully-connected layer with sigmoid function for binary classification.  (c) Stacked autoencoder with convolution layers (encoder) and transposed convolution layers (decoder).
+
+a) Generator consists of several convolution layers (CONV) follow by activation, batch normalization (BN) and up-sampling. (b) Discriminator also contains series of CONV layers follow by activation and dropout. At the end, it has a fully-connected layer with sigmoid function for binary classification.  
 
 ## Dataset
 About 12k of images (resize to 128x128x1) are labeled. Most of them have well-defined defect shapes. Apart from labeled data, 210 and 3000 synthetic images of C5 and C6 were added to the dataset respectively. Also,  in some of the experiments, C1 and C6 are replaced with denoised version of the images. 
