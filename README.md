@@ -25,12 +25,13 @@ Original and synthetic images of C6. 28x28, 64x64 generated images are resized t
 Original and synthetic images of C5. The effect of different kernel size in the convolution layer is shown
 
 ### AE denoised images 
-![Picture3](https://user-images.githubusercontent.com/65942005/100525609-fcac8a00-3176-11eb-9668-ac2a60c9c6e9.png)
+![Picture3](https://user-images.githubusercontent.com/65942005/100525609-fcac8a00-3176-11eb-9668-ac2a60c9c6e9.png) <br>
 Original and AE denoised images. The intensity of the feature are boosted to different levels
 
 
-
-
+### CNN Classifier performance with data augmentation and denoised images
+Table1: Sample distribution in training and testing set
 ![Picture8](https://user-images.githubusercontent.com/65942005/100525874-a93b3b80-3178-11eb-962c-bf7851644fd5.png)
+Table2: Accuracy of each class for each testcase 
 ![Picture9](https://user-images.githubusercontent.com/65942005/100525876-aa6c6880-3178-11eb-8fb3-57c26d47f4b1.png)
 
